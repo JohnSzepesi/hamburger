@@ -1,0 +1,152 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+nav {
+    /*a nav-ban egymás mellé kerülnek az egyébként egymás alatt lévő azonos szinten lévő osztályok*/
+    display: flex;
+    /*a nav-ban az azonos szinten lévő osztályok körül a hely egyenlően elosztásra kerül vízszintesen*/
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: #e4ce0d;
+    font-family: "Poppins", sans-serif;
+}
+
+.logo {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 1.3rem;
+}
+
+.logo img {
+    width: 16rem;
+    height: auto;
+}
+
+.nav-links {
+    /*a nav-links elemei egymás mellé kerülnek */
+    display: flex;
+    /*az nav-links elemei a linkek körül egyenlő helyek lesznek*/
+    justify-content: space-around;
+    /*a nal-links a teljes szélesség 45%-t foglalja el*/
+    width: 45%;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links a {
+    color: rgb(151, 14, 14);
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+.nav-links li img {
+    max-width: 15px;
+    height: auto;
+}
+
+.burger {
+    /*alapesetben nem látszik*/
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    /*ez maga a hamburgerikon*/
+    width: 25px;
+    height: 3px;
+    /*ez a 3 csík a hamburgerben*/
+    background-color: rgb(151, 14, 14);
+    margin: 5px;
+    transition: all 0.3 ease;
+}
+
+@media screen and (max-width: 1090px) {
+    .nav-links {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .nav-links {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 816px) {
+    .nav-links a {
+        width: 100%;
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    .nav-links {
+        /*a jobb oldalra és a nav alá kerülnek a linkek, a top 8vh miatt épp a nav alá, a height 92vh miatt a lap aljáig*/
+        position: absolute;
+        right: 0px;
+        height: 92vh;
+        top: 8vh;
+        background-color: #e4ce0d;
+        /*flex és flex-direction miatt kerülnek egymás alá a linkek, align-items center miatt pedig középre*/
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /*az oldal 50%-ig fog érni ha legördül a hamburger*/
+        width: 50%;
+        /*emiatt úszik be jobbról majd vissza a sárga rész*/
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in;
+    }
+    .nav-links li {
+        /*emiatt a jobbról beúszáskor még nincsenek rajta a linkek*/
+        opacity: 0;
+    }
+    .burger {
+        /*ez jeleníti meg a hamburgert ezen a képernyő szélességben*/
+        display: block;
+    }
+}
+
+.nav-active {
+	/*ha a százalékot növelem, annál kevesebbre jön be a sárga háttér és a linkek*/
+    transform: translateX(0%);
+}
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+/*Ez forgatja el 45 fokkal a csíkokat a hamburgerben ha rákattintok*/
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.toggle .line2 {
+    opacity: 0;
+}
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
